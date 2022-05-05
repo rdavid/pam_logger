@@ -1,8 +1,5 @@
-# PAM Logger
+# PAM Logger [![Hits-of-Code](https://hitsofcode.com/github/rdavid/pam_logger?branch=master)](https://hitsofcode.com/view/github/rdavid/pam_logger?branch=master) [![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/pam_logger/blob/master/LICENSE)
 PAM module to collect user data
-
-[![Hits-of-Code](https://hitsofcode.com/github/rdavid/pam_logger?branch=master)](https://hitsofcode.com/view/github/rdavid/pam_logger?branch=master)
-[![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/pam_logger/blob/master/LICENSE)
 
 * [About](#about)
 * [Install](#install)
