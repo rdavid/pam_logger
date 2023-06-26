@@ -24,4 +24,4 @@ make install
 From this point all sudo commands will be logged at `/tmp/pam_logger.log`.
 ## License
 PAM Logger is copyright [David Rabkin](http://cv.rabkin.co.il) and
-available under a [Zero-Claus BSD license](https://github.com/rdavid/pam_logger/blob/master/LICENSE).
+available under a [Zero-Clause BSD license](https://github.com/rdavid/pam_logger/blob/master/LICENSE).
