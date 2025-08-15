@@ -6,8 +6,14 @@ PAM module to collect user data
 * [License](#license)
 
 ## About
-The module implements `pam_sm_authenticate` API to collect user data. The data
-is adding to `/tmp/pam_logger.log`. Implemented and tested on Devian.
+This project implements a Pluggable Authentication Module (PAM) that implements
+the `pam_sm_authenticate` API to capture user authentication details such as
+username, service, and remote host during login events.
+The collected data is appended to `/tmp/pam_logger.log` in a structured format
+for auditing, compliance checks, and security monitoring.
+This module is lightweight, tested on Debian, and can be integrated into
+authentication workflows without modifying existing services.
+
 ## Install
 Disable authentication timeout for sudo:
 ```
@@ -22,6 +28,7 @@ Compile and install the module:
 make install
 ```
 From this point all sudo commands will be logged at `/tmp/pam_logger.log`.
+
 ## License
 PAM Logger is copyright [David Rabkin](http://cv.rabkin.co.il) and
 available under a [Zero-Clause BSD license](https://github.com/rdavid/pam_logger/blob/master/LICENSE).
