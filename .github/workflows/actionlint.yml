@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+---
+name: actionlint
+'on': [pull_request, push]
+env:
+  URL: https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash # yamllint disable-line
+jobs:
+  actionlint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download actionlint
+        id: get_actionlint
+        run: bash <(curl "$URL")
+      - name: Check workflow files
+        run: ${{ steps.get_actionlint.outputs.executable }} -color

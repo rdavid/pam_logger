@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+---
+name: yamllint
+'on': [pull_request, push]
+jobs:
+  yamllint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: >
+            ./.github/*.yml
+            ./.github/workflows/*.yml
+          strict: true

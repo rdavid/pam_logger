@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+---
+name: typos
+'on': [pull_request, push]
+jobs:
+  typos:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: crate-ci/typos@v1.35.4
