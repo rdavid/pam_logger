@@ -16,17 +16,14 @@ authentication workflows without modifying existing services.
 
 ## Install
 Disable authentication timeout for sudo:
-```
-https://askubuntu.com/questions/636092/how-to-get-sudo-to-prompt-you-for-a-password-each-time
-```
-Configure pam sudo:
+ https://askubuntu.com/questions/636092/how-to-get-sudo-to-prompt-you-for-a-password-each-time
+
+Configure pam sudo and install the module:
 ```
 sudo sed -i '2s/^/auth sufficient pam_logger.so/' /etc/pam.d/sudo
-```
-Compile and install the module:
-```
 make install
 ```
+
 From this point all sudo commands will be logged at `/tmp/pam_logger.log`.
 
 ## License
