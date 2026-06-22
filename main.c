@@ -69,7 +69,7 @@ PAM_EXTERN int pam_sm_authenticate(
     report("Unable to read user name: %s\n", pam_strerror(handle, rc));
     return rc;
   }
-  struct passwd *pwd = getpwnam(user);
+  const struct passwd *pwd = getpwnam(user);
   if (NULL == pwd) {
     report("Unknown user %s\n", user);
     return PAM_USER_UNKNOWN;

@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2026 David Rabkin
+# SPDX-License-Identifier: 0BSD
+---
+name: cppcheck
+'on': [pull_request, push]
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cppcheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install --yes cppcheck
+      - run: >
+          cppcheck --enable=warning,style,performance,portability
+          --error-exitcode=1 --inline-suppr
+          --suppress=missingIncludeSystem main.c
