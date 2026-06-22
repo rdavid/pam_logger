@@ -1,0 +1,63 @@
+// Settings:
+:toc: macro
+:!toc-title:
+// URLs:
+:img-build: https://github.com/rdavid/pam_logger/actions/workflows/build.yml/badge.svg
+:img-hoc: https://hitsofcode.com/github/rdavid/pam_logger?branch=master&label=hits%20of%20code
+:img-license: https://img.shields.io/github/license/rdavid/pam_logger?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat
+:url-build: https://github.com/rdavid/pam_logger/actions/workflows/build.yml
+:url-cv: http://cv.rabkin.co.il
+:url-hoc: https://hitsofcode.com/view/github/rdavid/pam_logger?branch=master
+:url-license: https://github.com/rdavid/pam_logger/blob/master/LICENSES/0BSD.txt
+:url-pam: https://github.com/linux-pam/linux-pam
+:url-sudo-timeout: https://askubuntu.com/questions/636092/how-to-get-sudo-to-prompt-you-for-a-password-each-time
+
+= PAM Logger
+
+// The ASCII art is generated with figlet using the standard font:
+//  figlet -f standard -w 79 'pam logger'
+[,sh]
+----
+                         _
+ _ __   __ _ _ __ ___   | | ___   __ _  __ _  ___ _ __
+| '_ \ / _` | '_ ` _ \  | |/ _ \ / _` |/ _` |/ _ \ '__|
+| |_) | (_| | | | | | | | | (_) | (_| | (_| |  __/ |
+| .__/ \__,_|_| |_| |_| |_|\___/ \__, |\__, |\___|_|
+|_|                              |___/ |___/
+----
+
+image:{img-build}[build,link={url-build}]
+image:{img-hoc}[hits of code,link={url-hoc}]
+image:{img-license}[license,link={url-license}]
+
+toc::[]
+
+== About
+
+This project implements a Pluggable Authentication Module
+({url-pam}[`PAM`]) that uses the `pam_sm_authenticate` API to capture user
+authentication details such as username, service, and remote host during
+login events.
+The collected data is appended to `/tmp/pam_logger.log` in a structured
+format for auditing, compliance checks, and security monitoring.
+This module is lightweight, tested on Debian, and can be integrated into
+authentication workflows without modifying existing services.
+
+== Install
+
+Disable the authentication timeout for `sudo`, as described in this
+{url-sudo-timeout}[Ask Ubuntu answer].
+Configure the `sudo` PAM stack and install the module:
+
+[,sh]
+----
+sudo sed -i '2s/^/auth sufficient pam_logger.so/' /etc/pam.d/sudo
+make install
+----
+
+From this point on, all `sudo` commands log to `/tmp/pam_logger.log`.
+
+== License
+
+`pam_logger` belongs to {url-cv}[David Rabkin] and uses a
+{url-license}[Zero-Clause BSD license].
