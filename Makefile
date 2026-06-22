@@ -11,6 +11,6 @@ install: main
 	sudo ld -x --shared -o /lib/i386-linux-gnu/security/pam_logger.so main.o
 
 main: main.o
-	gcc -fPIC -fno-stack-protector -Wextra -Wall -Werror -O3 -c main.c
+	$(CC) -fPIC -fno-stack-protector -Wextra -Wall -Werror -O3 -c main.c
 
 test:
