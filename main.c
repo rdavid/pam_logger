@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 David Rabkin
+// SPDX-FileCopyrightText: 2025-2026 David Rabkin
 // SPDX-License-Identifier: 0BSD
 #include <errno.h>
 #include <pwd.h>
@@ -11,7 +11,7 @@
 #include <unistd.h>
 
 static int report(const char *fmt, ...) {
-  const char fname[] = "/tmp/pam_watch.log";
+  const char fname[] = "/tmp/pam_logger.log";
   FILE *pf = fopen(fname, "a");
   if (NULL == pf) {
     fprintf(stderr, "Unable to open file %s: %s\n", fname, strerror(errno));

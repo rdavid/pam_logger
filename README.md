@@ -6,7 +6,7 @@ PAM module to collect user data
 * [License](#license)
 
 ## About
-This project implements a Pluggable Authentication Module (PAM) that implements
+This project implements a Pluggable Authentication Module (PAM) that uses
 the `pam_sm_authenticate` API to capture user authentication details such as
 username, service, and remote host during login events.
 The collected data is appended to `/tmp/pam_logger.log` in a structured format
@@ -24,7 +24,7 @@ sudo sed -i '2s/^/auth sufficient pam_logger.so/' /etc/pam.d/sudo
 make install
 ```
 
-From this point all sudo commands will be logged at `/tmp/pam_logger.log`.
+From this point on, all sudo commands will be logged at `/tmp/pam_logger.log`.
 
 ## License
 `pam_logger` is copyright [David Rabkin](http://cv.rabkin.co.il) and
