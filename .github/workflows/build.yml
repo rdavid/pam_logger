@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2025-2026 David Rabkin
+# SPDX-FileCopyrightText: 2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 ---
-name: reuse
+name: build
 'on': [pull_request, push]
 permissions:
   contents: read
@@ -9,9 +9,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  reuse:
+  build:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
-      - uses: fsfe/reuse-action@v6
+      - run: sudo apt-get update && sudo apt-get install --yes libpam0g-dev
+      - run: make main
