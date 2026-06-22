@@ -16,6 +16,6 @@ jobs:
       matrix:
         cc: [gcc, clang]
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.0
       - run: sudo apt-get update && sudo apt-get install --yes libpam0g-dev
       - run: make main CC=${{ matrix.cc }}
