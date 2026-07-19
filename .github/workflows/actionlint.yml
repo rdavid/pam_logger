@@ -2,7 +2,10 @@
 # SPDX-License-Identifier: 0BSD
 ---
 name: actionlint
-'on': [pull_request, push]
+'on':
+  pull_request:
+  push:
+    branches: [master]
 permissions:
   contents: read
 concurrency:
@@ -14,6 +17,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.0
+        with:
+          persist-credentials: false
       - id: get
         run: |
           ver=1.7.12

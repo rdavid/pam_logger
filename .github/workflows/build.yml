@@ -2,7 +2,10 @@
 # SPDX-License-Identifier: 0BSD
 ---
 name: build
-'on': [pull_request, push]
+'on':
+  pull_request:
+  push:
+    branches: [master]
 permissions:
   contents: read
 concurrency:
@@ -13,9 +16,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
+      fail-fast: false
       matrix:
         cc: [gcc, clang]
     steps:
       - uses: actions/checkout@v7.0.0
+        with:
+          persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install --yes libpam0g-dev
       - run: make main CC=${{ matrix.cc }}

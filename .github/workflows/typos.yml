@@ -2,7 +2,10 @@
 # SPDX-License-Identifier: 0BSD
 ---
 name: typos
-'on': [pull_request, push]
+'on':
+  pull_request:
+  push:
+    branches: [master]
 permissions:
   contents: read
 concurrency:
@@ -14,4 +17,6 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.0
+        with:
+          persist-credentials: false
       - uses: crate-ci/typos@v1.48.0
