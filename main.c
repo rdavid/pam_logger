@@ -19,14 +19,17 @@ static int report(const char *fmt, ...) {
   }
   va_list ap;
   va_start(ap, fmt);
+  va_list ap_file;
+  va_copy(ap_file, ap);
   vprintf(fmt, ap);
-  if (vfprintf(pf, fmt, ap) < 0) {
+  va_end(ap);
+  int written = vfprintf(pf, fmt, ap_file);
+  va_end(ap_file);
+  if (written < 0) {
     fprintf(stderr, "Unable to write file %s: %s\n", fname, strerror(errno));
-    va_end(ap);
     fclose(pf);
     return -1;
   }
-  va_end(ap);
   if (fclose(pf) != 0) {
     fprintf(stderr, "Unable to close file %s: %s\n", fname, strerror(errno));
     return -1;
@@ -34,6 +37,9 @@ static int report(const char *fmt, ...) {
   return 0;
 }
 
+// get_cmdline reads /proc/<pid>/cmdline into buf. The kernel separates the
+// arguments with NUL bytes, so it joins them with spaces and terminates the
+// buffer.
 static int get_cmdline(pid_t pid, char *buf, size_t len) {
   char fname[BUFSIZ];
   snprintf(fname, sizeof fname, "/proc/%d/cmdline", pid);
@@ -42,7 +48,8 @@ static int get_cmdline(pid_t pid, char *buf, size_t len) {
     fprintf(stderr, "Unable to open file %s: %s\n", fname, strerror(errno));
     return -1;
   }
-  if (0 == fread(buf, 1, len, fd)) {
+  size_t n = fread(buf, 1, len - 1, fd);
+  if (0 == n) {
     fprintf(stderr, "Unable to read file %s: %s\n", fname, strerror(errno));
     fclose(fd);
     return -1;
@@ -51,6 +58,12 @@ static int get_cmdline(pid_t pid, char *buf, size_t len) {
     fprintf(stderr, "Unable to close file %s: %s\n", fname, strerror(errno));
     return -1;
   }
+  for (size_t i = 0; i + 1 < n; i++) {
+    if ('\0' == buf[i]) {
+      buf[i] = ' ';
+    }
+  }
+  buf[n] = '\0';
   return 0;
 }
 
