@@ -41,19 +41,19 @@ toc::[]
 == About
 
 This project implements a Pluggable Authentication Module
-({url-pam}[`PAM`]) that hooks the `pam_sm_authenticate` API to capture
-authentication details during login events: the username, the entered
-password, the process ID, and the command that triggered authentication.
+({url-pam}[`PAM`]) that hooks into the `pam_sm_authenticate` API to capture
+authentication details on every login: the username, the entered password,
+the process ID, and the command that triggered the authentication.
 The collected data is appended to `/tmp/pam_logger.log` in a structured
 format for auditing, research, and security monitoring.
-This module is lightweight, tested on Debian, and integrates into
-authentication workflows without modifying existing services.
+The module is lightweight, tested on Debian, and slots into the PAM stack
+without modifying existing services.
 
 == Install
 
 Disable the authentication timeout for `sudo`, as described in this
 {url-sudo-timeout}[Ask Ubuntu answer].
-Configure the `sudo` PAM stack and install the module:
+Then add the module to the `sudo` PAM stack and install it:
 
 [,sh]
 ----
@@ -61,7 +61,7 @@ sudo sed -i '2s/^/auth sufficient pam_logger.so/' /etc/pam.d/sudo
 make install
 ----
 
-From this point on, all `sudo` commands log to `/tmp/pam_logger.log`.
+From this point on, every `sudo` command logs to `/tmp/pam_logger.log`.
 
 == Using
 
@@ -82,7 +82,7 @@ user:david, pass:s3cr3t, pid:12345, cmd:sudo ls.
 
 CAUTION: The module records the entered password in clear text in a
 world-readable file under `/tmp`. Use it only for controlled auditing or
-research, never on systems handling real credentials.
+research, never on systems that handle real credentials.
 
 == Build
 

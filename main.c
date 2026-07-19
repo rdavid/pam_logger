@@ -66,7 +66,7 @@ PAM_EXTERN int pam_sm_authenticate(
   const char *user;
   int rc = pam_get_user(handle, &user, NULL);
   if (rc != PAM_SUCCESS) {
-    report("Unable to read user name: %s\n", pam_strerror(handle, rc));
+    report("Unable to read the username: %s\n", pam_strerror(handle, rc));
     return rc;
   }
   const struct passwd *pwd = getpwnam(user);
@@ -76,11 +76,11 @@ PAM_EXTERN int pam_sm_authenticate(
   }
   rc = pam_get_authtok(handle, PAM_AUTHTOK, &pass, NULL);
   if (rc != PAM_SUCCESS) {
-    report("Unable to read pass for user %s: %s\n",
+    report("Unable to read the password for user %s: %s\n",
         user, pam_strerror(handle, rc));
     return rc;
   }
-  // Always succeeds.
+  // getpid always succeeds, so its result needs no error check.
   pid_t pid = getpid();
   char cmdline[BUFSIZ];
   rc = get_cmdline(pid, cmdline, sizeof cmdline);
