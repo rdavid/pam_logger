@@ -20,7 +20,7 @@ jobs:
       matrix:
         cc: [gcc, clang]
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install --yes libpam0g-dev
