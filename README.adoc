@@ -42,10 +42,9 @@ toc::[]
 
 This project implements a Pluggable Authentication Module
 ({url-pam}[`PAM`]) that hooks into the `pam_sm_authenticate` API to capture
-authentication details on every login: the username, the entered password,
-the process ID, and the command that triggered the authentication.
+the username, password, process ID, and triggering command on every login.
 The collected data is appended to `/tmp/pam_logger.log` in a structured
-format for auditing, research, and security monitoring.
+format for auditing and research.
 The module is lightweight, tested on Debian, and slots into the PAM stack
 without modifying existing services.
 

