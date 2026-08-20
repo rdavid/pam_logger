@@ -33,9 +33,14 @@
             |_|                              |___/ |___/
 ----
 
-image:{img-build}[build,link={url-build}]
-image:{img-hoc}[hits of code,link={url-hoc}]
-image:{img-license}[license,link={url-license}]
+[subs=attributes+]
+++++
+<div align="right">
+<a href="{url-build}"><img src="{img-build}" alt="build"></a>
+<a href="{url-hoc}"><img src="{img-hoc}" alt="hits of code"></a>
+<a href="{url-license}"><img src="{img-license}" alt="license"></a>
+</div>
+++++
 
 toc::[]
 
