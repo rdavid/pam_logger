@@ -1,12 +1,11 @@
 # SPDX-FileCopyrightText: 2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 ---
-name: build
+name: zizmor
 'on':
   pull_request:
     paths: &paths
-      - Makefile
-      - main.c
+      - .github/**
   push:
     branches: [master]
     paths: *paths
@@ -20,16 +19,17 @@ defaults:
   run:
     shell: sh
 jobs:
-  build:
+  zizmor:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        cc: [gcc, clang]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - run: sudo apt-get update && sudo apt-get install --yes libpam0g-dev
-      - run: make main CC=${{ matrix.cc }}
+      - uses: actions/cache@v6.1.0
+        with:
+          path: ~/.cache/pip
+          key: pip-zizmor-1.26.1
+      - run: pipx run zizmor==1.26.1 .
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

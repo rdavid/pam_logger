@@ -18,6 +18,7 @@
 :url-sudo-timeout: https://askubuntu.com/questions/636092/how-to-get-sudo-to-prompt-you-for-a-password-each-time
 :url-typos: https://github.com/crate-ci/typos
 :url-yamllint: https://github.com/adrienverge/yamllint
+:url-zizmor: https://github.com/zizmorcore/zizmor
 
 = PAM Logger
 
@@ -100,10 +101,15 @@ make install  # link pam_logger.so into the PAM modules directory
 ----
 
 Continuous integration compiles `main.c` with both `gcc` and `clang`, runs
-the {url-cppcheck}[`cppcheck`] static analyzer, and applies the
-{url-actionlint}[`actionlint`], {url-checkmake}[`checkmake`],
-{url-conform}[`conform`], {url-reuse}[`reuse`], {url-typos}[`typos`], and
-{url-yamllint}[`yamllint`] linters.
+the {url-cppcheck}[`cppcheck`] static analyzer, and applies the following
+linters:
+{url-actionlint}[`actionlint`],
+{url-checkmake}[`checkmake`],
+{url-conform}[`conform`],
+{url-reuse}[`reuse`],
+{url-typos}[`typos`],
+{url-yamllint}[`yamllint`],
+{url-zizmor}[`zizmor`].
 
 == License
 
