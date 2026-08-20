@@ -11,6 +11,7 @@
 :url-conform: https://github.com/siderolabs/conform
 :url-cppcheck: https://cppcheck.sourceforge.io
 :url-cv: http://cv.rabkin.co.il
+:url-gitleaks: https://github.com/gitleaks/gitleaks
 :url-hoc: https://hitsofcode.com/view/github/rdavid/pam_logger?branch=master
 :url-license: https://github.com/rdavid/pam_logger/blob/master/LICENSES/0BSD.txt
 :url-pam: https://github.com/linux-pam/linux-pam
@@ -118,6 +119,7 @@ linters:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
 {url-conform}[`conform`],
+{url-gitleaks}[`gitleaks`],
 {url-reuse}[`reuse`],
 {url-typos}[`typos`],
 {url-yamllint}[`yamllint`],
