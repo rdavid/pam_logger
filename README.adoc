@@ -8,6 +8,7 @@
 :url-actionlint: https://github.com/rhysd/actionlint
 :url-build: https://github.com/rdavid/pam_logger/actions/workflows/build.yml
 :url-checkmake: https://github.com/checkmake/checkmake
+:url-conform: https://github.com/siderolabs/conform
 :url-cppcheck: https://cppcheck.sourceforge.io
 :url-cv: http://cv.rabkin.co.il
 :url-hoc: https://hitsofcode.com/view/github/rdavid/pam_logger?branch=master
@@ -96,8 +97,8 @@ make install  # link pam_logger.so into the PAM modules directory
 Continuous integration compiles `main.c` with both `gcc` and `clang`, runs
 the {url-cppcheck}[`cppcheck`] static analyzer, and applies the
 {url-actionlint}[`actionlint`], {url-checkmake}[`checkmake`],
-{url-reuse}[`reuse`], {url-typos}[`typos`], and {url-yamllint}[`yamllint`]
-linters.
+{url-conform}[`conform`], {url-reuse}[`reuse`], {url-typos}[`typos`], and
+{url-yamllint}[`yamllint`] linters.
 
 == License
 
