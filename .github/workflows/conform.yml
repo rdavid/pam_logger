@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: 0BSD
 
 # Enforces the Conventional Commits format required by AGENTS.md. On a pull
-# request every commit ahead of the base branch is checked, conform's
+# request every commit ahead of the base branch is checked. Conform's
 # --base-branch flag needs the base ref present locally, which fetch-depth 0
 # guarantees. The checkout ref is pinned to the pull request head SHA so the
 # job inspects the real commits rather than GitHub's synthetic merge commit,
 # whose "Merge X into Y" header is not itself a conventional commit. On a
-# direct push to master only the landed commit is checked. conform has no
+# direct push to master only the landed commit is checked. Conform has no
 # stable release yet, so the pin below tracks the latest alpha.
 ---
 name: conform
