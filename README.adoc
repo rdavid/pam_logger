@@ -2,9 +2,9 @@
 :toc: macro
 :!toc-title:
 // URLs:
-:img-build: https://github.com/rdavid/pam_logger/actions/workflows/build.yml/badge.svg
+:img-build: https://img.shields.io/github/actions/workflow/status/rdavid/pam_logger/build.yml?branch=master&color=8cd0d3&label=build&labelColor=555555&logo=linux&logoColor=dcdccc&style=flat
 :img-hoc: https://hitsofcode.com/github/rdavid/pam_logger?branch=master&label=hits%20of%20code
-:img-license: https://img.shields.io/github/license/rdavid/pam_logger?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat
+:img-license: https://img.shields.io/github/license/rdavid/pam_logger?color=94bff3&labelColor=555555&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHRleHQgeD0iMTIiIHk9IjIwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNkY2RjY2MiPiYjMTY5OzwvdGV4dD48L3N2Zz4%3D&style=flat
 :url-actionlint: https://github.com/rhysd/actionlint
 :url-build: https://github.com/rdavid/pam_logger/actions/workflows/build.yml
 :url-checkmake: https://github.com/checkmake/checkmake
